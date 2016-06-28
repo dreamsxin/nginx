@@ -1,0 +1,3 @@
+[submodule "debian/modules/nginx-rtmp-module"]
+	path = debian/modules/nginx-rtmp-module
+	url = https://github.com/dreamsxin/nginx-rtmp-module.git
