@@ -95,6 +95,7 @@
 #define NGX_HTTP_REQUEST_URI_TOO_LARGE     414
 #define NGX_HTTP_UNSUPPORTED_MEDIA_TYPE    415
 #define NGX_HTTP_RANGE_NOT_SATISFIABLE     416
+#define NGX_HTTP_MISDIRECTED_REQUEST       421
 
 
 /* Our own HTTP codes */
@@ -182,6 +183,7 @@ typedef struct {
     ngx_table_elt_t                  *user_agent;
     ngx_table_elt_t                  *referer;
     ngx_table_elt_t                  *content_length;
+    ngx_table_elt_t                  *content_range;
     ngx_table_elt_t                  *content_type;
 
     ngx_table_elt_t                  *range;
@@ -300,7 +302,7 @@ typedef struct {
     ngx_http_addr_conf_t             *addr_conf;
     ngx_http_conf_ctx_t              *conf_ctx;
 
-#if (NGX_HTTP_SSL && defined SSL_CTRL_SET_TLSEXT_HOSTNAME)
+#if (NGX_HTTP_SSL)
     ngx_str_t                        *ssl_servername;
 #if (NGX_PCRE)
     ngx_http_regex_t                 *ssl_servername_regex;
@@ -537,11 +539,8 @@ struct ngx_http_request_s {
     unsigned                          subrequest_ranges:1;
     unsigned                          single_range:1;
     unsigned                          disable_not_modified:1;
-
-#if (NGX_STAT_STUB)
     unsigned                          stat_reading:1;
     unsigned                          stat_writing:1;
-#endif
 
     /* used to parse HTTP headers */
 
