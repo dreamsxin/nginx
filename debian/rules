@@ -102,7 +102,9 @@ full_configure_flags := \
 			--add-module=$(MODULESDIR)/nginx-dav-ext-module \
 			--add-module=$(MODULESDIR)/nginx-echo \
 			--add-module=$(MODULESDIR)/nginx-upstream-fair \
-			--add-module=$(MODULESDIR)/ngx_http_substitutions_filter_module
+                        --add-module=$(MODULESDIR)/ngx_http_substitutions_filter_module \
+                        --add-module=$(MODULESDIR)/ngx_http_qrcode_module \
+                        --add-module=$(MODULESDIR)/nginx-rtmp-module
 
 extras_configure_flags := \
 			$(common_configure_flags) \
@@ -136,7 +138,9 @@ extras_configure_flags := \
 			--add-module=$(MODULESDIR)/nginx-lua \
 			--add-module=$(MODULESDIR)/nginx-upload-progress \
 			--add-module=$(MODULESDIR)/nginx-upstream-fair \
-			--add-module=$(MODULESDIR)/ngx_http_substitutions_filter_module
+                        --add-module=$(MODULESDIR)/ngx_http_substitutions_filter_module \
+                        --add-module=$(MODULESDIR)/ngx_http_qrcode_module \
+                        --add-module=$(MODULESDIR)/nginx-rtmp-module
 
 %:
 	dh $@ --with systemd
